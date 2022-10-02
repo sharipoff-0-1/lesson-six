@@ -1,12 +1,30 @@
-import React from "react";
+import React, { Component } from "react";
+import { Container } from "./Register.styled";
+import Login from "./Components/Login.jsx";
+import Register from "./Components/Register.jsx";
+
 import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <h1>hello vite</h1>
-    </div>
-  );
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: true,
+    };
+  }
+  render() {
+    const getSwitch = (value) => {
+      console.log(value);
+      this.setState({ active: value });
+    };
+    return (
+      <Container>
+        {this.state.active ? (
+          <Login getSwitch={getSwitch} />
+        ) : (
+          <Register getSwitch={getSwitch} />
+        )}
+      </Container>
+    );
+  }
 }
-
-export default App;
